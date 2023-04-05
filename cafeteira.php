@@ -1,6 +1,4 @@
 <?php
-    ini_set ('display_errors','1');
-
     $cafeteira = [
         'suprimentos' => [
             'cafe'      => 0,
@@ -17,33 +15,26 @@
         file_put_contents ('dados.json', json_encode ($cafeteira));
     }
 
-    // enum Bebidas {
-    //     case Cafe;
-    //     case Chocolate;
-    //     case Cappuccino;
-    // }
-
-    // foreach (Bebidas::cases() as $bebida) {
-    //     print ($bebida->name."<br>");
-    // }
-
     function adicionarSuprimento ($suprimento) {
+        global $cafeteira;
         $cafeteira['suprimentos'][$suprimento] = 100;
-        print ut_contents ('dados.json', json_encode ($cafeteira));
+        print (file_put_contents ('dados.json', json_encode ($cafeteira)));
     }
 
     function iniciarCaixa ($valor) {
+        global $cafeteira;
         $cafeteira['caixa'] = $valor;
+        print (file_put_contents ('dados.json', json_encode ($cafeteira)));
     }
 
     function listaSuprimentos () {
+        global $cafeteira;
         return $cafeteira['suprimentos'];
     }
 
     switch ($_GET['data']) {
-        // echo json_encode (listaSuprimentos());
         case 'listar' :
-            echo json_encode ($cafeteira['suprimentos']);
+            echo json_encode (listaSuprimentos());
             break;
         case 'adicionar' :
             switch ($_GET['sup']) {

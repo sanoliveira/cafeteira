@@ -2,7 +2,31 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <script>
+            document.addEventListener ('DOMContentLoaded', () => {
+                document.querySelector ('form').addEventListener ('submit', e => {
+                    e.preventDefault ()
+                    console.log ('parou')
+                })
+            })
+        </script>
     </head>
     <body>
+        <form method="post">
+            <fieldset>
+                <legend>Selecione a sua bebida</legend>
+                <input type="radio" id="curto" name="bebida" value="curto">
+                <label for="curto">Café Curto</label><br>
+                <input type="radio" id="espresso" name="bebida" value="espresso">
+                <label for="espresso">Café Espresso</label><br>
+                <input type="radio" id="cappuccino" name="bebida" value="cappuccino">
+                <label for="cappuccino">Cappuccino</label><br>
+                <hr>
+                <input type="checkbox" id="acucar" name="acucar" value="1">
+                <label for="acucar">Adicionar mais açúcar?</label><br>
+                <hr>
+                <center><input type="submit" value="Preparar"></center
+            </fieldset>
+        </form>
     </body>
 </html>
