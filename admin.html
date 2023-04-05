@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script defer>
+            function listarSuprimentos () {
+                fetch ('cafeteira.php?data=listar')
+                .then (data => data.text ())
+                .then (sup => {
+                    sup = JSON.parse (sup)
+                    for (item in sup) {
+                        document.querySelector (`#${item}`).value = sup[item]
+                    }
+                })
+            }
+
+            function adicionarSuprimentos (sup) {
+                fetch ('cafeteira.php?data=adicionar&sup='+sup)
+                .then (data => data.text ())
+                .then (ret => {
+                    if (ret === 'ok') {
+                        listarSuprimentos ()
+                    }
+                })
+            }
+
+            listarSuprimentos ();
+        </script>
+    </head>
+    <body>
+        <header>
+
+        </header>
+        <main>
+            <fieldset>
+                <legend>Suprimentos</legend>
+                <label for="cafe">Café</label>
+                <progress id="cafe" max="100">0</progress>
+                <label for="chocolate">Chocolate</label>
+                <progress id="chocolate" max="100">0</progress>
+                <label for="acucar">Açúcar</label>
+                <progress id="acucar" max="100">0</progress>
+            </fieldset>
+        </main>
+    </body>
+</html>
