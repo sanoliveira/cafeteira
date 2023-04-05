@@ -2,51 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <script>
-            document.addEventListener ('DOMContentLoaded', () => {
-                function listarSuprimentos () {
-                    fetch ('cafeteira.php?data=listar')
-                    .then (data => data.text ())
-                    .then (sup => {
-                        sup = JSON.parse (sup)
-                        for (item in sup) {
-                            document.querySelector (`#${item}`).value = sup[item]
-                        }
-                    })
-                }
-
-                function adicionarSuprimentos (sup) {
-                    fetch ('cafeteira.php?data=adicionar&sup='+sup)
-                    .then (data => data.text ())
-                    .then (ret => {
-                        if (ret > 0 ) listarSuprimentos ();
-                    })
-                }
-
-                document.querySelectorAll ('#suprimentos button').forEach ((button, i) => {
-                    button.addEventListener ('click', () => {
-                        switch (i) {
-                            case 0:
-                                adicionarSuprimentos ('cafe')
-                                break;
-                            case 1:
-                                adicionarSuprimentos ('chocolate')
-                                break;
-                            case 2:
-                                adicionarSuprimentos ('acucar')
-                                break;
-                        }
-                    })
-                })
-
-                listarSuprimentos ();
-            })
-        </script>
+        <script src="src/admin.js" defer></script>
         <style>
             @import 'estilo.css';
 
             fieldset#suprimentos, fieldset#moedas  {
                 grid-template-areas: 'label progress button';
+                grid-template-columns: 0.25fr 0.5fr 0.25fr;
             }
 
             fieldset#caixa {
@@ -82,28 +44,28 @@
             <fieldset id="moedas">
                 <legend>Moedas</legend>
 
-                <label for="0.01">0.01</label>
-                <progress id="0.01" max="25">0</progress>
+                <label for="m0_01">0.01</label>
+                <progress id="m0_01" max="25">0</progress>
                 <button>adicionar</button>
 
-                <label for="0.05">0.05</label>
-                <progress id="0.05" max="25">0</progress>
+                <label for="m0_05">0.05</label>
+                <progress id="m0_05" max="25">0</progress>
                 <button>adicionar</button>
 
-                <label for="0.10">0.10</label>
-                <progress id="0.10" max="25">0</progress>
+                <label for="m0_10">0.10</label>
+                <progress id="m0_10" max="25">0</progress>
                 <button>adicionar</button>
 
-                <label for="0.25">0.25</label>
-                <progress id="0.25" max="25">0</progress>
+                <label for="m0_25">0.25</label>
+                <progress id="m0_25" max="25">0</progress>
                 <button>adicionar</button>
 
-                <label for="0.50">0.50</label>
-                <progress id="0.50" max="25">0</progress>
+                <label for="m0_50">0.50</label>
+                <progress id="m0_50" max="25">0</progress>
                 <button>adicionar</button>
 
-                <label for="1.00">1.00</label>
-                <progress id="1.00" max="25">0</progress>
+                <label for="m1_00">1.00</label>
+                <progress id="m1_00" max="25">0</progress>
                 <button>adicionar</button>
 
                 <hr>

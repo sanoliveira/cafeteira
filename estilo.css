@@ -1,5 +1,6 @@
 html {
   font-size: 62.5%;
+  font-family: open sans;
 }
 
 body {
@@ -7,8 +8,8 @@ body {
 }
 
 fieldset {
-    border: 1px solid;
-    border-radius: 5px;
+    border: 0.1rem solid;
+    border-radius: 0.5rem;
     max-width: 35vw;
     display: grid;
     grid-row-gap: 1rem;
