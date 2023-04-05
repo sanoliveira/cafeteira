@@ -1,0 +1,17 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+fieldset {
+    border: 1px solid;
+    border-radius: 5px;
+    max-width: 35vw;
+    display: grid;
+    grid-row-gap: 1rem;
+    justify-content: space-evenly;
+    align-items: center;
+}
