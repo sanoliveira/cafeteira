@@ -34,16 +34,29 @@
         print (file_put_contents ('dados.json', json_encode ($cafeteira)));
     }
 
+    function totalizarCaixa () {
+        global $cafeteira;
+        $cafeteira['caixa'] = 0;
+        foreach ($cafeteira['moedas'] as $moeda => $quantia) {
+            $moeda = str_replace('_', '.', $moeda);
+            // print ("$moeda => $quantia \n");
+            $cafeteira['caixa'] += $moeda * $quantia;
+        }
+    }
+
     function adicionarMoedas ($moeda) {
         global $cafeteira;
         $cafeteira['moedas'][$moeda] += 1;
+
+        totalizarCaixa ();
+
         print (file_put_contents ('dados.json', json_encode ($cafeteira)));
     }
 
-    function iniciarCaixa ($valor) {
+    function exibirCaixa () {
         global $cafeteira;
-        $cafeteira['caixa'] = $valor;
-        print (file_put_contents ('dados.json', json_encode ($cafeteira)));
+        totalizarCaixa ();
+        return ($cafeteira['caixa']);
     }
 
     function listaSuprimentos () {
@@ -63,6 +76,10 @@
 
         case 'listarMoedas' :
             echo json_encode (listaMoedas());
+            break;
+
+        case 'exibirCaixa' :
+            echo exibirCaixa ();
             break;
 
         case 'adicionar' :
@@ -100,4 +117,5 @@
             }
     }
 
+    totalizarCaixa ();
 ?>

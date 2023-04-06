@@ -33,6 +33,15 @@ function adicionarMoedas (val) {
     .then (data => data.text ())
     .then (ret => {
         if (ret > 0 ) listarMoedas ();
+        exibirCaixa ();
+    })
+}
+
+function exibirCaixa () {
+    fetch ('cafeteira.php?data=exibirCaixa')
+    .then (data => data.text ())
+    .then (ret => {
+        document.querySelector('#total').value = ret;
     })
 }
 
@@ -79,3 +88,4 @@ document.querySelectorAll ('#moedas button').forEach ((button, i) => {
 
 listarSuprimentos ();
 listarMoedas ();
+exibirCaixa ();
