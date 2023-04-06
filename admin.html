@@ -6,6 +6,21 @@
         <style>
             @import 'estilo.css';
 
+            body {
+                display: flex;
+                flex-direction: row;
+            }
+
+            div {
+                position: relative;
+                float: left;
+                margin: .5rem;
+            }
+
+            fieldset {
+                width: 30vw;
+            }
+
             fieldset#suprimentos, fieldset#moedas  {
                 grid-template-areas: 'label progress button';
                 grid-template-columns: 1fr 2fr 1fr;
@@ -18,6 +33,22 @@
             fieldset progress {
                 display: block;
             }
+
+            #bebidas {
+                justify-content: unset;
+            }
+
+            #bebidas header {
+                height: 3rem;
+                line-height: 3rem;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+
+            #bebidas header button {
+                float: right;
+            }
         </style>
     </head>
     <body>
@@ -25,6 +56,7 @@
 
         </header>
         <main>
+        <div>
             <fieldset id="suprimentos">
                 <legend>Suprimentos</legend>
 
@@ -60,6 +92,19 @@
                 <label for="total">Total</label>
                 <input type="text" id="total" readonly>
             </fieldset>
+
+        </div>
+        <div>
+            <fieldset id="bebidas">
+                <legend>Bebidas</legend>
+                <header>
+                    <button>Nova bebida</button>
+                </header>
+                <main>
+
+                </main>
+            </fieldset>
+        </div>
         </main>
     </body>
 </html>
