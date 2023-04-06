@@ -8,7 +8,7 @@
 
             fieldset#suprimentos, fieldset#moedas  {
                 grid-template-areas: 'label progress button';
-                grid-template-columns: 0.25fr 0.5fr 0.25fr;
+                grid-template-columns: 1fr 2fr 1fr;
             }
 
             fieldset#caixa {
@@ -28,45 +28,28 @@
             <fieldset id="suprimentos">
                 <legend>Suprimentos</legend>
 
-                <label for="cafe">Café</label>
-                <progress id="cafe" max="100">0</progress>
+                <label for="café">Café</label>
+                <progress id="café" max="100">0</progress>
                 <button>adicionar</button>
 
                 <label for="chocolate">Chocolate</label>
                 <progress id="chocolate" max="100">0</progress>
                 <button>adicionar</button>
 
-                <label for="acucar">Açúcar</label>
-                <progress id="acucar" max="100">0</progress>
+                <label for="açúcar">Açúcar</label>
+                <progress id="açúcar" max="100">0</progress>
                 <button>adicionar</button>
             </fieldset>
 
             <fieldset id="moedas">
                 <legend>Moedas</legend>
 
-                <label for="m0_01">0.01</label>
-                <progress id="m0_01" max="25">0</progress>
-                <button>adicionar</button>
-
-                <label for="m0_05">0.05</label>
-                <progress id="m0_05" max="25">0</progress>
-                <button>adicionar</button>
-
-                <label for="m0_10">0.10</label>
-                <progress id="m0_10" max="25">0</progress>
-                <button>adicionar</button>
-
-                <label for="m0_25">0.25</label>
-                <progress id="m0_25" max="25">0</progress>
-                <button>adicionar</button>
-
-                <label for="m0_50">0.50</label>
-                <progress id="m0_50" max="25">0</progress>
-                <button>adicionar</button>
-
-                <label for="m1_00">1.00</label>
-                <progress id="m1_00" max="25">0</progress>
-                <button>adicionar</button>
+                <label for="1c">0.01</label> <progress id="1c" name="0.01" max="25">0</progress> <button>adicionar</button>
+                <label for="5c">0.05</label> <progress id="5c" name="0.05" max="25">0</progress> <button>adicionar</button>
+                <label for="10c">0.10</label> <progress id="10c" name="0.10" max="25">0</progress> <button>adicionar</button>
+                <label for="25c">0.25</label> <progress id="25c" name="0.25" max="25">0</progress> <button>adicionar</button>
+                <label for="50c">0.50</label> <progress id="50c" name="0.50" max="25">0</progress> <button>adicionar</button>
+                <label for="1r">1.00</label> <progress id="1r" name="1.00" max="25">0</progress> <button>adicionar</button>
 
                 <hr>
                 <button>Zerar</button>

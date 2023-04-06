@@ -1,121 +1,35 @@
 <?php
-    $cafeteira = [
-        'suprimentos' => [
-            'cafe'      => 0,
-            'chocolate' => 0,
-            'acucar'    => 0
-        ],
-        'caixa' => 0,
-        'moedas' => [
-            '0_01' => 0,
-            '0_05' => 0,
-            '0_10' => 0,
-            '0_25' => 0,
-            '0_50' => 0,
-            '1_00' => 0,
-        ],
-        'cedulas' => [
-            '2' => 0,
-            '5' => 0,
-            '10' => 0,
-        ],
-    ];
+    include_once ('src/classes/Cafeteira.php');
 
-    if (file_exists('dados.json')) {
-        $dados = file_get_contents ('dados.json');
-        $cafeteira = json_decode ($dados, true);
-    } else {
-        file_put_contents ('dados.json', json_encode ($cafeteira));
-    }
+    $cafeteira = new Cafeteira ();
 
-    function adicionarSuprimento ($suprimento) {
-        global $cafeteira;
-        $cafeteira['suprimentos'][$suprimento] = 100;
-        print (file_put_contents ('dados.json', json_encode ($cafeteira)));
-    }
 
-    function totalizarCaixa () {
-        global $cafeteira;
-        $cafeteira['caixa'] = 0;
-        foreach ($cafeteira['moedas'] as $moeda => $quantia) {
-            $moeda = str_replace('_', '.', $moeda);
-            // print ("$moeda => $quantia \n");
-            $cafeteira['caixa'] += $moeda * $quantia;
+    if (isset ($_GET['exibir'])) {
+        if ($_GET['exibir'] === 'suprimentos') {
+            print ($cafeteira->exibirSuprimentos ());
+        }
+
+        if ($_GET['exibir'] === 'moedas') {
+            print ($cafeteira->exibirMoedas ());
+        }
+
+        if ($_GET['exibir'] === 'caixa') {
+            print ($cafeteira->exibirCaixa ());
         }
     }
 
-    function adicionarMoedas ($moeda) {
-        global $cafeteira;
-        $cafeteira['moedas'][$moeda] += 1;
 
-        totalizarCaixa ();
-
-        print (file_put_contents ('dados.json', json_encode ($cafeteira)));
-    }
-
-    function exibirCaixa () {
-        global $cafeteira;
-        totalizarCaixa ();
-        return ($cafeteira['caixa']);
-    }
-
-    function listaSuprimentos () {
-        global $cafeteira;
-        return $cafeteira['suprimentos'];
-    }
-
-    function listaMoedas () {
-        global $cafeteira;
-        return $cafeteira['moedas'];
-    }
-
-    switch ($_GET['data']) {
-        case 'listar' :
-            echo json_encode (listaSuprimentos());
-            break;
-
-        case 'listarMoedas' :
-            echo json_encode (listaMoedas());
-            break;
-
-        case 'exibirCaixa' :
-            echo exibirCaixa ();
-            break;
-
-        case 'adicionar' :
-            switch ($_GET['sup']) {
-                case 'cafe' :
-                    adicionarSuprimento ('cafe');
-                    break;
-                case 'acucar' :
-                    adicionarSuprimento ('acucar');
-                    break;
-                case 'chocolate':
-                    adicionarSuprimento ('chocolate');
-                    break;
+    if (isset ($_GET['adicionar'])) {
+        if ($_GET['adicionar'] === 'suprimentos') {
+            if (isset ($_GET['tipo'])) {
+                print ($cafeteira->adicionarSuprimento (new Suprimento ($_GET['tipo'], '100')));
             }
+        }
 
-            switch ($_GET['moeda']) {
-                case '0_01':
-                    adicionarMoedas ('0_01');
-                    break;
-                case '0_05':
-                    adicionarMoedas ('0_05');
-                    break;
-                case '0_10':
-                    adicionarMoedas ('0_10');
-                    break;
-                case '0_25':
-                    adicionarMoedas ('0_25');
-                    break;
-                case '0_50':
-                    adicionarMoedas ('0_50');
-                    break;
-                case '1_00':
-                    adicionarMoedas ('1_00');
-                    break;
+        if ($_GET['adicionar'] === 'moedas') {
+            if (isset ($_GET['valor'])) {
+                print ($cafeteira->adicionarMoeda ($_GET['valor']));
             }
+        }
     }
-
-    totalizarCaixa ();
 ?>
